@@ -1,4 +1,5 @@
 const limpiarTexto = require('../utils/limpiarTexto');
+const chatbotService = require('../services/chatbotService');
 
 exports.responder = async (req, res) => {
   const { mensaje } = req.body;
@@ -15,7 +16,6 @@ exports.responder = async (req, res) => {
   }
 
   const respuesta = await chatbotService.obtenerRespuesta(mensajeLimpio);
-  await historialModel.registrarInteraccion(mensaje, mensajeLimpio, respuesta);
-
+  
   res.json({ respuesta });
 };
